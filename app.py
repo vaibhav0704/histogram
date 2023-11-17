@@ -30,14 +30,14 @@ def enhance():
 
 @app.route("/clahe", methods=["POST"])
 @cross_origin(origins="*")
-def clahe():
+def clahe_img():
     image_file = request.files["image"]
     image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
-
+    print(image[:,:,0])
     clahe_img = clahe(image[:,:,0],8,0,0)
 
     def plot_to_image(image, clahe_img):
-        fig, axs = plt.subplots(1, 2, figsize=(200, 100))
+        fig, axs = plt.subplots(1, 2, figsize=(10, 5))
         axs[0].imshow(image[:, :, 0], cmap='gray')
         axs[1].imshow(clahe_img, cmap='gray')
 
@@ -51,7 +51,6 @@ def clahe():
 
         # Close the plot to release resources
         plt.close(fig)
-        plt.show()
 
         return image
 

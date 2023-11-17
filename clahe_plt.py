@@ -171,8 +171,9 @@ def clahe(img,clipLimit,nrBins=128,nrX=0,nrY=0):
     else:
         return claheimg
       
-image = io.imread('mri-scan.jpeg')
+image = io.imread('image.jpg')
 clahe_img = clahe(image[:,:,0],8,0,0)
+print(image[:,:,0])
 #clipLimit = 8 gave decent results on eyePACs Dataset
 #and setting xsz and ysz = 32
 #and calculating nrX and nrY
